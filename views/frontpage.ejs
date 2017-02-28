@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple login</title>
+    <script src="/vendor/bower_components/jquery/dist/jquery.js">  </script>
+    <script>
+        $(document).ready(function(){
+            var user,pass;
+            $("#submit").click(function(){
+                user=$("#user").val();
+                pass=$("#password").val();
+                $.post("http://localhost:3006/frontpage",{user: user,password: pass}, function(data){
+                    if(data==='done')
+                    {
+                        alert("login success");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Hello people !</h1>
+<input type="TEXT" id="user" size="40"><br>
+<input type="password" id="password" size="40"><br>
+<input type="button" id="submit" value="Submit">
+</body>
+</html>
