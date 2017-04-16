@@ -16,3 +16,10 @@
     
     NODE_PATH=.;
     NODE_ENV=development;
+
+
+#### Bash error
+-------------------------
+```
+    sudo chmod +x+x+x bin/www
+```
