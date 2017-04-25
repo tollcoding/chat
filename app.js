@@ -1,3 +1,4 @@
+var cool = require('cool-ascii-faces');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -24,6 +25,7 @@ var frontpage = require('./routes/frontpage');
 app.engine('ejs', require('ejs-locals')); // layout partial block
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 app.use(function(req, res, next) {
   if (req.url == '/hello') {
@@ -114,5 +116,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+app.get('/cool', function(request, response) {
+    response.send(cool());
+});
 module.exports = app;

@@ -13,8 +13,8 @@ var log = require('lib/log')(module);
 /**
  * Get port from environment and store in Express.
  */
-app.set('port', config.get('port'));
-
+/*app.set('port', config.get('port'));*/
+app.set('port', (process.env.PORT || 5000));
 /*var port = normalizePort(process.env.PORT || '3000');*/
 
 var port = config.get('port');
