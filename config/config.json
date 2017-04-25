@@ -1,7 +1,7 @@
 {
   "port": 5000,
   "mongoose": {
-    "uri": "mongodb://localhost/chat",
+    "uri": "mongodb://<admin>:<admin>@ds119081.mlab.com:19081/chat",
     "options": {
       "server": {
         "socketOptions": {
