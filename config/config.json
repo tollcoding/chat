@@ -1,5 +1,5 @@
 {
-  "port": 5000,
+  "port": "process.env.PORT",
   "mongoose": {
     "uri": "mongodb://admin:admin@ds119081.mlab.com:19081/chat",
     "options": {
