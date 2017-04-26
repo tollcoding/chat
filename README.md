@@ -15,8 +15,8 @@ https://prochat.herokuapp.com
 
 #### *server db*
 
-    Use Heroku add-ons - mLab MongoDB:
-    https://www.mlab.com/home
+Use Heroku add-ons - mLab MongoDB:
+https://www.mlab.com/home
      
 ## INSTALL
 ------------

@@ -67,7 +67,7 @@ schema.statics.authorize = function(username, password, callback) {
 
 exports.User = mongoose.model('User', schema);
 
-// ошибки для выдачи посетителю
+// Errors for issuing to the visitor
 function AuthError(message) {
     Error.apply(this, arguments);
     Error.captureStackTrace(this, HttpError);
