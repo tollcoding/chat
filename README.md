@@ -1,7 +1,22 @@
-# MongoDB
+# Demo
+-------------------
+https://prochat.herokuapp.com
+
+## MongoDB
 -------------------
 
-     mongod --dbpath mongoDB -v 
+#### *local db* - put this to ./config/config.json
+
+```
+"mongoose": {
+    "uri": "mongodb://localhost/chat",
+```
+     mongod --dbpath mongoDB -v
+
+#### *server db*
+
+    Use Heroku add-ons - mLab MongoDB:
+    https://www.mlab.com/home
      
 ## INSTALL
 ------------
