@@ -1,7 +1,7 @@
 {
   "port": "5000",
   "mongoose": {
-    "uri": "mongodb://admin:admin@ds119081.mlab.com:19081/chat",
+    "uri": "mongodb://heroku_cbkb3b7v:m63bfrrjiuh1ib0u4251ma6m1b@ds163060.mlab.com:63060/heroku_cbkb3b7v",
     "options": {
       "server": {
         "socketOptions": {
