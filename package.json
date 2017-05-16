@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha",
-    "coverage": "istanbul cover _mocha",
+    "coverage": "rm -rf coverage/* && ./node_modules/.bin/istanbul cover _mocha",
     "coverageES6": "babel-node ./node_modules/.bin/isparta cover _mocha",
     "coveragenyc": "nyc --check-coverage --lines 100 npm test"
   },
@@ -19,8 +19,8 @@
     "morgan": "~1.7.0",
     "nconf": "^0.8.4",
     "serve-favicon": "~2.3.2",
-    "socket.io": "^1.7.3",
-    "async": "^2.1.5",
+    "socket.io": "^1.7.4",
+    "async": "^2.4.0",
     "connect": "^3.6.0",
     "connect-mongo": "^1.3.2",
     "cookie": "^0.3.1",
