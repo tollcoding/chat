@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha",
-    "coverage": "rm -rf coverage/* && ./node_modules/.bin/istanbul cover _mocha",
     "coverageES6": "babel-node ./node_modules/.bin/isparta cover _mocha",
-    "coveragenyc": "nyc --check-coverage --lines 100 npm test"
+    "coveragenyc": "nyc --check-coverage --lines 100 npm test",
+    "lint": "eslint *.js test/ src/",
+    "test": "mocha --compilers js:babel-register",
+    "coverage": "rm -rf coverage/* && babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
+    "dev": "nodemon ./bin/www --exec babel-node",
+    "compile": "rm -rf dist/* && babel ./src -d dist"
   },
   "dependencies": {
     "body-parser": "~> 1.16.0",
@@ -31,12 +34,23 @@
     "express-session": "~> 1.15.1",
     "mongodb": "~> 2.2.24",
     "mongoose": "~> 4.8.4",
-    "winston": "~> 2.3.1"
+    "winston": "~> 2.3.1",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.11.6"
   },
   "devDependencies": {
-    "isparta": "~> 4.0.0",
-    "istanbul": "~> 0.4.5",
-    "mocha": "~> 3.4.1",
-    "nyc": "~> 10.3.2"
+    "chai": "^3.2.0",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-loader": "^1.4.1",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.2.2",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^2.2.5",
+    "nodemon": "^1.10.0",
+    "mocha": "^3.4.1",
+    "nyc": "^10.3.2"
   }
 }
