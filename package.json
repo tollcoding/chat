@@ -51,6 +51,8 @@
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.4.1",
     "nodemon": "^1.10.0",
-    "nyc": "^10.3.2"
+    "nyc": "^10.3.2",
+    "should-sinon": "0.0.5",
+    "supertest": "^3.0.0"
   }
 }
