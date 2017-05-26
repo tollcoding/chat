@@ -2,5 +2,5 @@ languages:
   javascript: true
 exclude_paths:
   - "mongoDB"
-- "**/vendor"
-- "public"
+  - "**/vendor"
+  - "public"
