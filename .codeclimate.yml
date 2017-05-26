@@ -3,3 +3,9 @@ languages:
 exclude_paths:
   - "mongoDB/"
   - "**/vendor"
+engines:
+  eslint:
+    enabled: true
+ratings:
+   paths:
+   - "**.js"
