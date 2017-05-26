@@ -35,7 +35,7 @@ var request = require('supertest');
 describe('loading express', function () {
     var server;
     beforeEach(function () {
-        server = require('../app');
+        server = require('app');
     });
 /*    afterEach(function () {
         server.close();
