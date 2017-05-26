@@ -7,7 +7,7 @@
     "coveragenyc": "nyc --check-coverage --lines 100 npm run coverage",
     "lint": "eslint *.js test/",
     "test": "NODE_PATH=.;NODE_ENV=test mocha --compilers js:babel-register",
-    "coverage": "rm -rf coverage/* && NODE_PATH=.;NODE_ENV=test babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
+    "coverage": "NODE_PATH=.;NODE_ENV=test rm -rf coverage/* && babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
     "dev": "NODE_PATH=.;NODE_ENV=development nodemon ./bin/www --exec node",
     "compile": "rm -rf dist/* && babel ./src -d dist"
   },
