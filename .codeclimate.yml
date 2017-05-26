@@ -1,6 +1,5 @@
 languages:
   javascript: true
 exclude_paths:
-  - "mongoDB"
+  - "mongoDB/"
   - "**/vendor"
-  - "public"
