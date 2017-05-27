@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_PATH=.;NODE_ENV=production node ./bin/www",
-    "coveragenyc": "nyc --check-coverage --lines 100 npm run coverage",
+    "coveragenyc": "nyc --check-coverage --lines 100  --timeout 15000 npm run coverage",
     "lint": "eslint *.js test/",
     "test": "NODE_PATH=.;NODE_ENV=test mocha --compilers js:babel-register",
     "coverage": "NODE_PATH=.;NODE_ENV=test rm -rf coverage/* && babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
