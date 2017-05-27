@@ -7,8 +7,8 @@
     "coveragenyc": "nyc --check-coverage --lines 100 npm run coverage",
     "lint": "eslint *.js test/",
     "test": "NODE_PATH=.;NODE_ENV=test mocha --compilers js:babel-register",
-    "coverage": "rm -rf coverage/* && NODE_PATH=.;NODE_ENV=test babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
-    "dev": "NODE_PATH=.;NODE_ENV=development nodemon ./bin/www --exec babel-node",
+    "coverage": "NODE_PATH=.;NODE_ENV=test rm -rf coverage/* && babel-node ./node_modules/.bin/istanbul cover _mocha -- --compilers js:babel-register",
+    "dev": "NODE_PATH=.;NODE_ENV=development nodemon ./bin/www --exec node",
     "compile": "rm -rf dist/* && babel ./src -d dist"
   },
   "dependencies": {
@@ -51,6 +51,8 @@
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.4.1",
     "nodemon": "^1.10.0",
-    "nyc": "^10.3.2"
+    "nyc": "^10.3.2",
+    "should-sinon": "0.0.5",
+    "supertest": "^3.0.0"
   }
 }

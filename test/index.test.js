@@ -7,3 +7,47 @@ describe('Array', function() {
         });
     });
 });
+
+var express = require('express');
+var request = require('supertest');
+
+var app = express();
+var router = express.Router();
+
+app.use(router);
+
+describe("Routes", function() {
+    describe("GET Users", function() {
+        it("should respond", function() {
+            request(app)
+                .get('/')
+                .expect('Content-Type', /json/)
+                .expect('Content-Length', '15')
+                .expect(200)
+                .end(function(err, res){
+                    if (err) throw err;
+            });
+        });
+    });
+});
+
+var request = require('supertest');
+describe('loading express', function () {
+    var server;
+    beforeEach(function () {
+        server = require('app');
+    });
+/*    afterEach(function () {
+        server.close();
+    });*/
+    it('responds to /', function testSlash(done) {
+        request(server)
+            .get('/')
+            .expect(200, done);
+    });
+    it('404 everything else', function testPath(done) {
+        request(server)
+            .get('/foo/bar')
+            .expect(404, done);
+    });
+});
