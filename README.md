@@ -5,12 +5,8 @@ https://prochat.herokuapp.com
 ## MongoDB
 -------------------
 
-#### *local db* - put this to ./config/config.json
+#### *local db*
 
-```
-"mongoose": {
-    "uri": "mongodb://localhost/chat",
-```
      mongod --dbpath mongoDB -v
 
 #### *server db*
@@ -30,7 +26,10 @@ https://www.mlab.com/home
 -------------------
     
     NODE_PATH=.;
-    NODE_ENV=development;
+    NODE_ENV
+        =production
+        =development
+        =test
 
 
 #### Bash error

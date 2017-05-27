@@ -10,7 +10,7 @@ describe('Array', function() {
 
 var express = require('express');
 var request = require('supertest');
-
+var toboggan = require('toboggan')(request);
 var app = express();
 var router = express.Router();
 
@@ -43,6 +43,7 @@ describe('loading express', function () {
     it('responds to /', function testSlash(done) {
         request(server)
             .get('/')
+            .expectTemplate('frontpage')
             .expect(200, done);
     });
     it('404 everything else', function testPath(done) {
