@@ -2,25 +2,25 @@
 <% block('title', ''); -%>
 
 <section class="container">
-    <p class="lead"> Войдите под своим логином или зарегитсрируйтесь</p>
+    <p class="lead"> Login with your login or register</p>
     <form class="form-horizontal login-form" name="login-form">
         <div class="form-group">
-            <label for="input-username" class="col-lg-2 control-label">Имя</label>
+            <label for="input-username" class="col-lg-2 control-label">Name</label>
 
             <div class="col-lg-10">
-                <input name="username" value="name" type="text" class="form-control" id="input-username" placeholder="Имя">
+                <input name="username" value="name" type="text" class="form-control" id="input-username" placeholder="Name">
             </div>
         </div>
         <div class="form-group">
-            <label for="input-password" class="col-lg-2 control-label">Пароль</label>
+            <label for="input-password" class="col-lg-2 control-label">Password</label>
 
             <div class="col-lg-10">
-                <input name="password" value="pass" type="password" class="form-control" id="input-password" placeholder="Пароль">
+                <input name="password" value="pass" type="password" class="form-control" id="input-password" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-primary" data-loading-text="Отправляю...">Войти</button>
+                <button type="submit" class="btn btn-primary" data-loading-text="Sending...">Login</button>
                 <span class="help-block error"></span>
             </div>
         </div>
@@ -40,7 +40,7 @@
             },
             statusCode: {
                 200: function() {
-                    form.html("Вы вошли в сайт").addClass('alert-success');
+                    form.html("You are logined").addClass('alert-success');
                     window.location.href = "/chat";
                 },
                 403: function(jqXHR) {

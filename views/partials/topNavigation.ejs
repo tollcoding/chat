@@ -1,15 +1,15 @@
 <nav class="navbar navbar-default" role="navigation">
     <ul class="nav navbar-nav">
-       <li><a href="/">Главная</a></li>
+       <li><a href="/">Home</a></li>
        <% if (user) { %>
        <li><a href="/chat">Chat</a></li>
        <% } %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <% if (user) { %>
-        <li><a href="" onclick="$('body').append('<form id=\'submitme\' method=\'POST\' action=\'/logout\'></form>');$('#submitme').submit();return false;">Выйти</a></form></li>
+        <li><a href="" onclick="$('body').append('<form id=\'submitme\' method=\'POST\' action=\'/logout\'></form>');$('#submitme').submit();return false;">Logout</a></form></li>
         <% } else { %>
-        <li><a href="/login">Войти</a></li>
+        <li><a href="/login">Login</a></li>
         <% } %>
     </ul>
 </nav>

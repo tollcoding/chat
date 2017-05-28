@@ -1,11 +1,11 @@
 <% layout('layout/page') -%>
 <% block('title', ''); -%>
 
-<p class="lead">Добро пожаловать, в чат <%=user.get('username')%></p>
+<p class="lead">Welcome to the chat room <%=user.get('username')%></p>
 <div id="room">
     <ul></ul>
     <form>
-        <input class="form-control" autocomplete="off" autofocus placeholder="Сообщение...">
+        <input class="form-control" autocomplete="off" autofocus placeholder="Message...">
     </form>
 </div>
 <script src="/vendor/bower_components/socket.io-client/dist/socket.io.js"></script>
@@ -21,18 +21,18 @@
             printMessage(username + "> " + message);
         })
         .on('leave', function(username) {
-            printStatus(username + " вышел из чата");
+            printStatus(username + " left the chat");
         })
         .on('join', function(username) {
-            printStatus(username + " вошёл в чат");
+            printStatus(username + " joined the chat");
         })
         .on('connect', function() {
-            printStatus("соединение установлено");
+            printStatus("connection established");
             form.on('submit', sendMessage);
             input.prop('disabled', false);
         })
         .on('disconnect', function() {
-            printStatus("соединение потеряно");
+            printStatus("connection lost");
             form.off('submit', sendMessage);
             input.prop('disabled', true);
             this.emit('error');
@@ -42,7 +42,7 @@
         })
         .on('error', function(reason) {
             if (reason == "handshake unauthorized") {
-                printStatus("вы вышли из сайта");
+                printStatus("You are logout");
             } else {
                 setTimeout(function() {
                     socket.socket.connect();
@@ -52,7 +52,7 @@
     function sendMessage() {
         var text = input.val();
         socket.emit('message', text, function() {
-            printMessage("я> " + text);
+            printMessage("You> " + text);
         });
         input.val('');
         return false;

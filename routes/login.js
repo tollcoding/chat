@@ -6,7 +6,7 @@ var AuthError = require('models/user').AuthError;
 
 router.get('/', function(req, res, next) {
     res.render('login', {
-        title: 'Регистрация и Вход',
+        title: 'Registration and Login',
         content: ''
     });
 });
