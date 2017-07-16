@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Mifrill/chat.svg?branch=master)](https://travis-ci.org/Mifrill/chat)
+[![Quality](http://img.shields.io/codeclimate/github/Mifrill/chat.svg)](https://codeclimate.com/github/Mifrill/chat)
+[![Build Status](https://travis-ci.org/Mifrill/chat.svg?branch=master)](https://travis-ci.org/Mifrill/chat)
+
 # Demo
 -------------------
 https://prochat.herokuapp.com
