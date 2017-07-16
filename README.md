@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Mifrill/chat.svg?branch=master)](https://travis-ci.org/Mifrill/chat)
 [![Quality](http://img.shields.io/codeclimate/github/Mifrill/chat.svg)](https://codeclimate.com/github/Mifrill/chat)
-[![Build Status](https://travis-ci.org/Mifrill/chat.svg?branch=master)](https://travis-ci.org/Mifrill/chat)
+[![Dependency Status](https://gemnasium.com/badges/github.com/Mifrill/chat.svg)](https://gemnasium.com/github.com/Mifrill/chat)
 
 # Demo
 -------------------
