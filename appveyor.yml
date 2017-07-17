@@ -20,4 +20,6 @@ test_script:
   - node --version
   - npm --version
   # run tests
+  - SET NODE_PATH=.
+  - SET NODE_ENV=test
   - npm run coveragenyc
