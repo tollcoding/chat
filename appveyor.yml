@@ -1,0 +1,8 @@
+version: "{build}"
+
+version: 1.0.{build}
+build:
+  verbosity: minimal
+services: mongodb
+test_script:
+  - npm run coveragenyc
