@@ -22,4 +22,4 @@ test_script:
   # run tests
   - SET NODE_PATH=.
   - SET NODE_ENV=test
-  - npm run coveragenyc
+  - istanbul cover _mocha
