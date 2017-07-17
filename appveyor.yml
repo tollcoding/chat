@@ -1,6 +1,23 @@
 version: "{build}"
-build:
-  verbosity: minimal
+# Test against the latest version of this Node.js version
+environment:
+  nodejs_version: "8"
+
+# Don't actually build.
+build: off
 services: mongodb
+
+# Install scripts. (runs after repo cloning)
+install:
+  # Get the latest stable version of Node.js or io.js
+  - ps: Install-Product node $env:nodejs_version
+  # install modules
+  - npm install
+
+# Post-install test scripts.
 test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
   - npm run coveragenyc
