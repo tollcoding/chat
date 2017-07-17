@@ -36,6 +36,7 @@ describe('loading express', function () {
     var server;
     beforeEach(function () {
         server = require('app');
+	      this.timeout(15000);
     });
 /*    afterEach(function () {
         server.close();
