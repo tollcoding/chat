@@ -9,6 +9,6 @@ env:
 script:
   - npm install -g codeclimate-test-reporter
   - npm install -g codecov
-  - istanbul cover _mocha --timeout 20000 --report lcovonly -- -R
+  - istanbul cover _mocha --timeout 20000
   - CODECLIMATE_REPO_TOKEN=f16ab6cab139ec63f4f781b1b127b8631e4eefbe6c9f0384d7d438fbcc390ad4 codeclimate-test-reporter < coverage/lcov.info
-  - CODECOV_TOKEN=7009446d-16d5-4ee3-ab41-839b318ff22e codecov
+  - CODECOV_TOKEN=7009446d-16d5-4ee3-ab41-839b318ff22e codecov < coverage/lcov.info
