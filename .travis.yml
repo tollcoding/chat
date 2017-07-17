@@ -9,4 +9,4 @@ env:
 script:
   - npm install -g codeclimate-test-reporter
   - istanbul cover _mocha
-  - CODECLIMATE_REPO_TOKEN=f16ab6cab139ec63f4f781b1b127b8631e4eefbe6c9f0384d7d438fbcc390ad4 codeclimate-test-reporter
+  - CODECLIMATE_REPO_TOKEN=f16ab6cab139ec63f4f781b1b127b8631e4eefbe6c9f0384d7d438fbcc390ad4 codeclimate-test-reporter < coverage/lcov.info
