@@ -7,6 +7,6 @@ services: mongodb
 env:
   - NODE_PATH=.
 script:
-  - npm run coveragenyc
   - npm install -g codeclimate-test-reporter
+  - npm run coverage
   - CODECLIMATE_REPO_TOKEN=f16ab6cab139ec63f4f781b1b127b8631e4eefbe6c9f0384d7d438fbcc390ad4 codeclimate-test-reporter < lcov.info
