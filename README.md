@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/Mifrill/chat.svg?branch=master)](https://travis-ci.org/Mifrill/chat)
 [![Build status](https://ci.appveyor.com/api/projects/status/xr83m8o7dxuu3ay0?svg=true)](https://ci.appveyor.com/project/Mifrill/chat)
+[![CircleCI](https://circleci.com/gh/Mifrill/chat.svg?style=svg)](https://circleci.com/gh/Mifrill/chat)
+[ ![Codeship Status for Mifrill/chat](https://app.codeship.com/projects/11433aa0-5c10-0135-71f7-12b712633443/status?branch=master)](https://app.codeship.com/projects/237746)
 [![Quality](http://img.shields.io/codeclimate/github/Mifrill/chat.svg)](https://codeclimate.com/github/Mifrill/chat)
 [![Coverage Status](https://img.shields.io/codeclimate/coverage/github/Mifrill/chat.svg)](https://codeclimate.com/github/mifrill/chat)
 [![codecov](https://codecov.io/gh/Mifrill/chat/branch/master/graph/badge.svg)](https://codecov.io/gh/Mifrill/chat)
