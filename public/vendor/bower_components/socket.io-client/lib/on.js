@@ -3,7 +3,7 @@
  * Module exports.
  */
 
-module.exports = on;
+module.exports = on
 
 /**
  * Helper for subscriptions.
@@ -15,10 +15,10 @@ module.exports = on;
  */
 
 function on (obj, ev, fn) {
-  obj.on(ev, fn);
+  obj.on(ev, fn)
   return {
     destroy: function () {
-      obj.removeListener(ev, fn);
+      obj.removeListener(ev, fn)
     }
-  };
+  }
 }

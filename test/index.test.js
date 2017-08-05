@@ -1,55 +1,55 @@
-var assert = require('assert');
+var assert = require('assert')
 
-describe('Array', function() {
-    describe('#indexOf()', function() {
-        it('should return -1 when the value is not present', function() {
-            assert.equal(-1, [1,2,3].indexOf(4));
-        });
-    });
-});
+describe('Array', function () {
+  describe('#indexOf()', function () {
+    it('should return -1 when the value is not present', function () {
+      assert.equal(-1, [1, 2, 3].indexOf(4))
+    })
+  })
+})
 
-var express = require('express');
-var request = require('supertest');
-var toboggan = require('toboggan')(request);
-var app = express();
-var router = express.Router();
+var express = require('express')
+var request = require('supertest')
+var toboggan = require('toboggan')(request)
+var app = express()
+var router = express.Router()
 
-app.use(router);
+app.use(router)
 
-describe("Routes", function() {
-    describe("GET Users", function() {
-        it("should respond", function() {
-            request(app)
+describe('Routes', function () {
+  describe('GET Users', function () {
+    it('should respond', function () {
+      request(app)
                 .get('/')
                 .expect('Content-Type', /json/)
                 .expect('Content-Length', '15')
                 .expect(200)
-                .end(function(err, res){
-                    if (err) throw err;
-            });
-        });
-    });
-});
+                .end(function (err, res) {
+                  if (err) throw err
+                })
+    })
+  })
+})
 
-var request = require('supertest');
+var request = require('supertest')
 describe('loading express', function () {
-    var server;
-    beforeEach(function () {
-        server = require('app');
-	      this.timeout(15000);
-    });
+  var server
+  beforeEach(function () {
+    server = require('app')
+	      this.timeout(15000)
+  })
 /*    afterEach(function () {
         server.close();
-    });*/
-    it('responds to /', function testSlash(done) {
-        request(server)
+    }); */
+  it('responds to /', function testSlash (done) {
+    request(server)
             .get('/')
             .expectTemplate('frontpage')
-            .expect(200, done);
-    });
-    it('404 everything else', function testPath(done) {
-        request(server)
+            .expect(200, done)
+  })
+  it('404 everything else', function testPath (done) {
+    request(server)
             .get('/foo/bar')
-            .expect(404, done);
-    });
-});
+            .expect(404, done)
+  })
+})

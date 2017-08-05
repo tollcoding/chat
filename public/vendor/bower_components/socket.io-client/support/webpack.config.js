@@ -22,7 +22,7 @@ module.exports = {
       loader: 'imports?define=>false'
     }]
   }
-};
+}
 
 /**
  * Populates `global`.
@@ -33,5 +33,5 @@ module.exports = {
 function glob () {
   return 'typeof self !== "undefined" ? self : ' +
     'typeof window !== "undefined" ? window : ' +
-    'typeof global !== "undefined" ? global : {}';
+    'typeof global !== "undefined" ? global : {}'
 }

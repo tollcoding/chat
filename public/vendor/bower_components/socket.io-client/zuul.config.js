@@ -9,4 +9,4 @@ module.exports = {
   },
   builder: 'zuul-builder-webpack',
   webpack: require('./support/webpack.config.js')
-};
+}

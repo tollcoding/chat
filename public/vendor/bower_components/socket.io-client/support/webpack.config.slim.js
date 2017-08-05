@@ -1,5 +1,5 @@
 
-var webpack = require('webpack');
+var webpack = require('webpack')
 
 module.exports = {
   name: 'slim',
@@ -31,7 +31,7 @@ module.exports = {
       loader: 'strip-loader?strip[]=debug'
     }]
   }
-};
+}
 
 /**
  * Populates `global`.
@@ -42,5 +42,5 @@ module.exports = {
 function glob () {
   return 'typeof self !== "undefined" ? self : ' +
     'typeof window !== "undefined" ? window : ' +
-    'typeof global !== "undefined" ? global : {}';
+    'typeof global !== "undefined" ? global : {}'
 }

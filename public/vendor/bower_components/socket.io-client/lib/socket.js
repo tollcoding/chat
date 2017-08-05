@@ -3,19 +3,19 @@
  * Module dependencies.
  */
 
-var parser = require('socket.io-parser');
-var Emitter = require('component-emitter');
-var toArray = require('to-array');
-var on = require('./on');
-var bind = require('component-bind');
-var debug = require('debug')('socket.io-client:socket');
-var hasBin = require('has-binary');
+var parser = require('socket.io-parser')
+var Emitter = require('component-emitter')
+var toArray = require('to-array')
+var on = require('./on')
+var bind = require('component-bind')
+var debug = require('debug')('socket.io-client:socket')
+var hasBin = require('has-binary')
 
 /**
  * Module exports.
  */
 
-module.exports = exports = Socket;
+module.exports = exports = Socket
 
 /**
  * Internal events (blacklisted).
@@ -38,13 +38,13 @@ var events = {
   reconnecting: 1,
   ping: 1,
   pong: 1
-};
+}
 
 /**
  * Shortcut to `Emitter#emit`.
  */
 
-var emit = Emitter.prototype.emit;
+var emit = Emitter.prototype.emit
 
 /**
  * `Socket` constructor.
@@ -53,26 +53,26 @@ var emit = Emitter.prototype.emit;
  */
 
 function Socket (io, nsp, opts) {
-  this.io = io;
-  this.nsp = nsp;
-  this.json = this; // compat
-  this.ids = 0;
-  this.acks = {};
-  this.receiveBuffer = [];
-  this.sendBuffer = [];
-  this.connected = false;
-  this.disconnected = true;
+  this.io = io
+  this.nsp = nsp
+  this.json = this // compat
+  this.ids = 0
+  this.acks = {}
+  this.receiveBuffer = []
+  this.sendBuffer = []
+  this.connected = false
+  this.disconnected = true
   if (opts && opts.query) {
-    this.query = opts.query;
+    this.query = opts.query
   }
-  if (this.io.autoConnect) this.open();
+  if (this.io.autoConnect) this.open()
 }
 
 /**
  * Mix in `Emitter`.
  */
 
-Emitter(Socket.prototype);
+Emitter(Socket.prototype)
 
 /**
  * Subscribe to open, close and packet events
@@ -81,15 +81,15 @@ Emitter(Socket.prototype);
  */
 
 Socket.prototype.subEvents = function () {
-  if (this.subs) return;
+  if (this.subs) return
 
-  var io = this.io;
+  var io = this.io
   this.subs = [
     on(io, 'open', bind(this, 'onopen')),
     on(io, 'packet', bind(this, 'onpacket')),
     on(io, 'close', bind(this, 'onclose'))
-  ];
-};
+  ]
+}
 
 /**
  * "Opens" the socket.
@@ -99,14 +99,14 @@ Socket.prototype.subEvents = function () {
 
 Socket.prototype.open =
 Socket.prototype.connect = function () {
-  if (this.connected) return this;
+  if (this.connected) return this
 
-  this.subEvents();
-  this.io.open(); // ensure open
-  if ('open' === this.io.readyState) this.onopen();
-  this.emit('connecting');
-  return this;
-};
+  this.subEvents()
+  this.io.open() // ensure open
+  if (this.io.readyState === 'open') this.onopen()
+  this.emit('connecting')
+  return this
+}
 
 /**
  * Sends a `message` event.
@@ -116,11 +116,11 @@ Socket.prototype.connect = function () {
  */
 
 Socket.prototype.send = function () {
-  var args = toArray(arguments);
-  args.unshift('message');
-  this.emit.apply(this, args);
-  return this;
-};
+  var args = toArray(arguments)
+  args.unshift('message')
+  this.emit.apply(this, args)
+  return this
+}
 
 /**
  * Override `emit`.
@@ -133,35 +133,35 @@ Socket.prototype.send = function () {
 
 Socket.prototype.emit = function (ev) {
   if (events.hasOwnProperty(ev)) {
-    emit.apply(this, arguments);
-    return this;
+    emit.apply(this, arguments)
+    return this
   }
 
-  var args = toArray(arguments);
-  var parserType = parser.EVENT; // default
-  if (hasBin(args)) { parserType = parser.BINARY_EVENT; } // binary
-  var packet = { type: parserType, data: args };
+  var args = toArray(arguments)
+  var parserType = parser.EVENT // default
+  if (hasBin(args)) { parserType = parser.BINARY_EVENT } // binary
+  var packet = { type: parserType, data: args }
 
-  packet.options = {};
-  packet.options.compress = !this.flags || false !== this.flags.compress;
+  packet.options = {}
+  packet.options.compress = !this.flags || this.flags.compress !== false
 
   // event ack callback
-  if ('function' === typeof args[args.length - 1]) {
-    debug('emitting packet with ack id %d', this.ids);
-    this.acks[this.ids] = args.pop();
-    packet.id = this.ids++;
+  if (typeof args[args.length - 1] === 'function') {
+    debug('emitting packet with ack id %d', this.ids)
+    this.acks[this.ids] = args.pop()
+    packet.id = this.ids++
   }
 
   if (this.connected) {
-    this.packet(packet);
+    this.packet(packet)
   } else {
-    this.sendBuffer.push(packet);
+    this.sendBuffer.push(packet)
   }
 
-  delete this.flags;
+  delete this.flags
 
-  return this;
-};
+  return this
+}
 
 /**
  * Sends a packet.
@@ -171,9 +171,9 @@ Socket.prototype.emit = function (ev) {
  */
 
 Socket.prototype.packet = function (packet) {
-  packet.nsp = this.nsp;
-  this.io.packet(packet);
-};
+  packet.nsp = this.nsp
+  this.io.packet(packet)
+}
 
 /**
  * Called upon engine `open`.
@@ -182,17 +182,17 @@ Socket.prototype.packet = function (packet) {
  */
 
 Socket.prototype.onopen = function () {
-  debug('transport is open - connecting');
+  debug('transport is open - connecting')
 
   // write connect packet if necessary
-  if ('/' !== this.nsp) {
+  if (this.nsp !== '/') {
     if (this.query) {
-      this.packet({type: parser.CONNECT, query: this.query});
+      this.packet({type: parser.CONNECT, query: this.query})
     } else {
-      this.packet({type: parser.CONNECT});
+      this.packet({type: parser.CONNECT})
     }
   }
-};
+}
 
 /**
  * Called upon engine `close`.
@@ -202,12 +202,12 @@ Socket.prototype.onopen = function () {
  */
 
 Socket.prototype.onclose = function (reason) {
-  debug('close (%s)', reason);
-  this.connected = false;
-  this.disconnected = true;
-  delete this.id;
-  this.emit('disconnect', reason);
-};
+  debug('close (%s)', reason)
+  this.connected = false
+  this.disconnected = true
+  delete this.id
+  this.emit('disconnect', reason)
+}
 
 /**
  * Called with socket packet.
@@ -217,38 +217,38 @@ Socket.prototype.onclose = function (reason) {
  */
 
 Socket.prototype.onpacket = function (packet) {
-  if (packet.nsp !== this.nsp) return;
+  if (packet.nsp !== this.nsp) return
 
   switch (packet.type) {
     case parser.CONNECT:
-      this.onconnect();
-      break;
+      this.onconnect()
+      break
 
     case parser.EVENT:
-      this.onevent(packet);
-      break;
+      this.onevent(packet)
+      break
 
     case parser.BINARY_EVENT:
-      this.onevent(packet);
-      break;
+      this.onevent(packet)
+      break
 
     case parser.ACK:
-      this.onack(packet);
-      break;
+      this.onack(packet)
+      break
 
     case parser.BINARY_ACK:
-      this.onack(packet);
-      break;
+      this.onack(packet)
+      break
 
     case parser.DISCONNECT:
-      this.ondisconnect();
-      break;
+      this.ondisconnect()
+      break
 
     case parser.ERROR:
-      this.emit('error', packet.data);
-      break;
+      this.emit('error', packet.data)
+      break
   }
-};
+}
 
 /**
  * Called upon a server event.
@@ -258,20 +258,20 @@ Socket.prototype.onpacket = function (packet) {
  */
 
 Socket.prototype.onevent = function (packet) {
-  var args = packet.data || [];
-  debug('emitting event %j', args);
+  var args = packet.data || []
+  debug('emitting event %j', args)
 
-  if (null != packet.id) {
-    debug('attaching ack callback to event');
-    args.push(this.ack(packet.id));
+  if (packet.id != null) {
+    debug('attaching ack callback to event')
+    args.push(this.ack(packet.id))
   }
 
   if (this.connected) {
-    emit.apply(this, args);
+    emit.apply(this, args)
   } else {
-    this.receiveBuffer.push(args);
+    this.receiveBuffer.push(args)
   }
-};
+}
 
 /**
  * Produces an ack callback to emit with an event.
@@ -280,23 +280,23 @@ Socket.prototype.onevent = function (packet) {
  */
 
 Socket.prototype.ack = function (id) {
-  var self = this;
-  var sent = false;
+  var self = this
+  var sent = false
   return function () {
     // prevent double callbacks
-    if (sent) return;
-    sent = true;
-    var args = toArray(arguments);
-    debug('sending ack %j', args);
+    if (sent) return
+    sent = true
+    var args = toArray(arguments)
+    debug('sending ack %j', args)
 
-    var type = hasBin(args) ? parser.BINARY_ACK : parser.ACK;
+    var type = hasBin(args) ? parser.BINARY_ACK : parser.ACK
     self.packet({
       type: type,
       id: id,
       data: args
-    });
-  };
-};
+    })
+  }
+}
 
 /**
  * Called upon a server acknowlegement.
@@ -306,15 +306,15 @@ Socket.prototype.ack = function (id) {
  */
 
 Socket.prototype.onack = function (packet) {
-  var ack = this.acks[packet.id];
-  if ('function' === typeof ack) {
-    debug('calling ack %s with %j', packet.id, packet.data);
-    ack.apply(this, packet.data);
-    delete this.acks[packet.id];
+  var ack = this.acks[packet.id]
+  if (typeof ack === 'function') {
+    debug('calling ack %s with %j', packet.id, packet.data)
+    ack.apply(this, packet.data)
+    delete this.acks[packet.id]
   } else {
-    debug('bad ack %s', packet.id);
+    debug('bad ack %s', packet.id)
   }
-};
+}
 
 /**
  * Called upon server connect.
@@ -323,11 +323,11 @@ Socket.prototype.onack = function (packet) {
  */
 
 Socket.prototype.onconnect = function () {
-  this.connected = true;
-  this.disconnected = false;
-  this.emit('connect');
-  this.emitBuffered();
-};
+  this.connected = true
+  this.disconnected = false
+  this.emit('connect')
+  this.emitBuffered()
+}
 
 /**
  * Emit buffered events (received and emitted).
@@ -336,17 +336,17 @@ Socket.prototype.onconnect = function () {
  */
 
 Socket.prototype.emitBuffered = function () {
-  var i;
+  var i
   for (i = 0; i < this.receiveBuffer.length; i++) {
-    emit.apply(this, this.receiveBuffer[i]);
+    emit.apply(this, this.receiveBuffer[i])
   }
-  this.receiveBuffer = [];
+  this.receiveBuffer = []
 
   for (i = 0; i < this.sendBuffer.length; i++) {
-    this.packet(this.sendBuffer[i]);
+    this.packet(this.sendBuffer[i])
   }
-  this.sendBuffer = [];
-};
+  this.sendBuffer = []
+}
 
 /**
  * Called upon server disconnect.
@@ -355,10 +355,10 @@ Socket.prototype.emitBuffered = function () {
  */
 
 Socket.prototype.ondisconnect = function () {
-  debug('server disconnect (%s)', this.nsp);
-  this.destroy();
-  this.onclose('io server disconnect');
-};
+  debug('server disconnect (%s)', this.nsp)
+  this.destroy()
+  this.onclose('io server disconnect')
+}
 
 /**
  * Called upon forced client/server side disconnections,
@@ -372,13 +372,13 @@ Socket.prototype.destroy = function () {
   if (this.subs) {
     // clean subscriptions to avoid reconnections
     for (var i = 0; i < this.subs.length; i++) {
-      this.subs[i].destroy();
+      this.subs[i].destroy()
     }
-    this.subs = null;
+    this.subs = null
   }
 
-  this.io.destroy(this);
-};
+  this.io.destroy(this)
+}
 
 /**
  * Disconnects the socket manually.
@@ -390,19 +390,19 @@ Socket.prototype.destroy = function () {
 Socket.prototype.close =
 Socket.prototype.disconnect = function () {
   if (this.connected) {
-    debug('performing disconnect (%s)', this.nsp);
-    this.packet({ type: parser.DISCONNECT });
+    debug('performing disconnect (%s)', this.nsp)
+    this.packet({ type: parser.DISCONNECT })
   }
 
   // remove socket from pool
-  this.destroy();
+  this.destroy()
 
   if (this.connected) {
     // fire events
-    this.onclose('io client disconnect');
+    this.onclose('io client disconnect')
   }
-  return this;
-};
+  return this
+}
 
 /**
  * Sets the compress flag.
@@ -413,7 +413,7 @@ Socket.prototype.disconnect = function () {
  */
 
 Socket.prototype.compress = function (compress) {
-  this.flags = this.flags || {};
-  this.flags.compress = compress;
-  return this;
-};
+  this.flags = this.flags || {}
+  this.flags.compress = compress
+  return this
+}
