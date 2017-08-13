@@ -12,6 +12,8 @@
 
 # Demo
 -------------------
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Mifrill/chat.svg)](https://greenkeeper.io/)
 https://prochat.herokuapp.com
 
 ## MongoDB
