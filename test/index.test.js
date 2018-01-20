@@ -42,20 +42,20 @@ describe('loading express', function () {
         server.close();
     }); */
   it('responds to /', function testSlash (done) {
-    this.timeout(10000);
+    this.timeout(10000)
     request(server)
             .get('/')
             .expectTemplate('frontpage')
             .expect(200, done)
   })
   it('404 everything else', function testPath (done) {
-    this.timeout(10000);
+    this.timeout(10000)
     request(server)
             .get('/foo/bar')
             .expect(404, done)
   }),
-  it('should take less than 500ms', function(done){
-      this.timeout(500);
-      setTimeout(done, 300);
-  });
+  it('should take less than 500ms', function (done) {
+    this.timeout(500)
+    setTimeout(done, 300)
+  })
 })
