@@ -59,3 +59,6 @@ describe('loading express', function () {
     setTimeout(done, 300)
   })
 })
+after(() => {
+  process.exit()
+})
