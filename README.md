@@ -4,6 +4,7 @@
 [ ![Codeship Status for Mifrill/chat](https://app.codeship.com/projects/11433aa0-5c10-0135-71f7-12b712633443/status?branch=master)](https://app.codeship.com/projects/237746)
 [![Maintainability](https://api.codeclimate.com/v1/badges/11a1fbb153d5466d2b2e/maintainability)](https://codeclimate.com/github/Mifrill/chat/maintainability)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/11a1fbb153d5466d2b2e/test_coverage)](https://codeclimate.com/github/Mifrill/chat/test_coverage)
 [![codecov](https://codecov.io/gh/Mifrill/chat/branch/master/graph/badge.svg)](https://codecov.io/gh/Mifrill/chat)
 [![Dependency Status](https://gemnasium.com/badges/github.com/Mifrill/chat.svg)](https://gemnasium.com/github.com/Mifrill/chat)
