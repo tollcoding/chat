@@ -6,9 +6,12 @@ node_js:
 services: mongodb
 env:
   - NODE_PATH=.
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
 script:
   - npm install -g codeclimate-test-reporter
   - npm install -g codecov
   - istanbul cover _mocha
   - CODECLIMATE_REPO_TOKEN=f16ab6cab139ec63f4f781b1b127b8631e4eefbe6c9f0384d7d438fbcc390ad4 codeclimate-test-reporter < coverage/lcov.info
   - CODECOV_TOKEN=7009446d-16d5-4ee3-ab41-839b318ff22e codecov < coverage/lcov.info
+after_script: greenkeeper-lockfile-upload
